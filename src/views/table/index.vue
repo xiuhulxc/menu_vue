@@ -1,5 +1,6 @@
 <template>
   <div class="app-container">
+    <el-button @click="handleClick">ss</el-button>
     <el-table
       v-loading="listLoading"
       :data="list"
@@ -8,6 +9,7 @@
       fit
       highlight-current-row
     >
+
       <el-table-column align="center" label="ID" width="95">
         <template slot-scope="scope">
           {{ scope.$index }}
@@ -40,11 +42,12 @@
         </template>
       </el-table-column>
     </el-table>
+
   </div>
 </template>
 
 <script>
-import { getList } from '@/api/table'
+import {getList, test} from '@/api/table'
 
 export default {
   filters: {
@@ -67,6 +70,11 @@ export default {
     this.fetchData()
   },
   methods: {
+    handleClick(){
+      test().then(res =>{
+        console.log(res)
+      })
+    },
     fetchData() {
       this.listLoading = true
       getList().then(response => {
